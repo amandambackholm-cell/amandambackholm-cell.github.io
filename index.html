@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Så fungerar Claude Code</title>
+  <meta name="description" content="En enkel introduktion på svenska till vad Claude Code är och hur det fungerar.">
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --text: #24211d;
+      --muted: #6a635a;
+      --line: #e4ded4;
+      --accent: #b4532f;
+      --code-bg: #24211d;
+      --code-text: #f3eee6;
+      --code-muted: #a89f92;
+      --code-accent: #eb9a78;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1816;
+        --surface: #24211e;
+        --text: #efeae2;
+        --muted: #a9a196;
+        --line: #38332d;
+        --accent: #eb9a78;
+        --code-bg: #111010;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    main, header, footer {
+      max-width: 760px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; line-height: 1.2; }
+    a { color: var(--accent); }
+
+    header { padding-top: 72px; padding-bottom: 32px; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 0 0 20px; font-size: clamp(38px, 8vw, 58px); }
+    .lead { margin: 0; color: var(--muted); font-size: 21px; }
+
+    section { padding: 36px 0; border-top: 1px solid var(--line); }
+    h2 { margin: 0 0 16px; font-size: 30px; }
+    h3 { margin: 0 0 6px; font-size: 20px; }
+    p { margin: 0 0 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    .steps { list-style: none; margin: 24px 0 0; padding: 0; counter-reset: step; }
+    .steps li {
+      position: relative;
+      counter-increment: step;
+      padding: 0 0 24px 56px;
+    }
+    .steps li:last-child { padding-bottom: 0; }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .steps li:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 42px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--line);
+    }
+    .steps p { color: var(--muted); }
+
+    .terminal {
+      margin: 20px 0 8px;
+      padding: 20px;
+      overflow-x: auto;
+      border-radius: 10px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+    }
+    .terminal .you { color: var(--code-accent); }
+    .terminal .note { color: var(--code-muted); }
+    .caption { color: var(--muted); font-size: 15px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+    .card p { color: var(--muted); font-size: 16px; }
+
+    code {
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--line);
+      font: 0.88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .tips { margin: 0; padding-left: 22px; }
+    .tips li { margin-bottom: 10px; }
+
+    footer { padding-top: 28px; padding-bottom: 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">En enkel introduktion</p>
+    <h1>Så fungerar Claude Code</h1>
+    <p class="lead">En AI-assistent som inte bara svarar på frågor, utan också kan läsa filer, skriva kod och köra kommandon på din dator.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Vad är Claude Code?</h2>
+      <p>Claude Code är ett verktyg från Anthropic där du beskriver vad du vill ha gjort med vanliga ord. Claude tar sedan reda på hur det kan göras och utför arbetet i din projektmapp.</p>
+      <p>Skillnaden mot en vanlig chatt är att du slipper kopiera text fram och tillbaka. Claude arbetar direkt med dina filer. Du behöver inte heller kunna programmera för att komma igång, även om det hjälper att förstå vad som händer.</p>
+    </section>
+
+    <section>
+      <h2>Så går det till</h2>
+      <p>Arbetet följer nästan alltid samma mönster:</p>
+      <ol class="steps">
+        <li>
+          <h3>Du beskriver målet</h3>
+          <p>Till exempel: ”Skapa en enkel hemsida om min bokklubb.”</p>
+        </li>
+        <li>
+          <h3>Claude sätter sig in i läget</h3>
+          <p>Claude läser relevanta filer i mappen för att förstå vad som redan finns.</p>
+        </li>
+        <li>
+          <h3>Claude gör jobbet</h3>
+          <p>Claude skapar och ändrar filer eller kör kommandon. Känsligare steg kräver ditt godkännande först.</p>
+        </li>
+        <li>
+          <h3>Claude kontrollerar resultatet</h3>
+          <p>Claude kan köra tester eller öppna sidan för att se att allt fungerar och rätta eventuella fel.</p>
+        </li>
+        <li>
+          <h3>Du granskar och styr vidare</h3>
+          <p>Du tittar på resultatet och säger vad som ska ändras. Sedan börjar samma mönster om.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Ett påhittat exempel</h2>
+      <div class="terminal"><span class="you">Du:</span> Lägg till en sida med våra öppettider.
+
+<span class="note">Claude läser index.html
+Claude skapar oppettider.html
+Claude lägger till en länk i menyn</span>
+
+<span class="you">Claude:</span> Klart! Sidan är skapad och länkad från menyn.
+
+<span class="you">Du:</span> Bra, men gör tabellen lite luftigare.</div>
+      <p class="caption">Du pratar med Claude som med en kollega, och kan rätta kursen när som helst.</p>
+    </section>
+
+    <section>
+      <h2>Var kan man använda det?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Terminalen</h3>
+          <p>Den ursprungliga versionen, där du skriver direkt på kommandoraden.</p>
+        </div>
+        <div class="card">
+          <h3>Skrivbordsappen</h3>
+          <p>Ett grafiskt gränssnitt som passar bra om du inte är van vid terminalen.</p>
+        </div>
+        <div class="card">
+          <h3>Webbläsaren</h3>
+          <p>Claude arbetar i molnet, utan att något behöver installeras.</p>
+        </div>
+        <div class="card">
+          <h3>Kodredigerare</h3>
+          <p>Tillägg för bland annat VS Code och JetBrains, för dig som redan kodar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Du behåller kontrollen</h2>
+      <p>Eftersom Claude kan ändra filer och köra kommandon finns det behörigheter. Du väljer vad Claude får göra på egen hand, och Claude frågar innan sådant du inte har godkänt i förväg.</p>
+      <p>Läs gärna frågorna innan du svarar ja. Claude kan göra misstag, så det är klokt att granska resultatet, särskilt innan något publiceras.</p>
+    </section>
+
+    <section>
+      <h2>Tips för att komma igång</h2>
+      <ul class="tips">
+        <li><strong>Börja smått.</strong> Ett litet, tydligt uppdrag ger snabbt en känsla för hur det fungerar.</li>
+        <li><strong>Berätta varför.</strong> Claude gör bättre val om du förklarar syftet och vem resultatet är till för.</li>
+        <li><strong>Ge feedback.</strong> Det första förslaget behöver inte vara det sista. Säg vad du vill ändra.</li>
+        <li><strong>Spara instruktioner.</strong> I filen <code>CLAUDE.md</code> kan du skriva sådant Claude alltid ska känna till om projektet.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Vill du veta mer?</h2>
+      <p>Den officiella dokumentationen finns på <a href="https://code.claude.com/docs">code.claude.com/docs</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    Det här är en privat introduktion och inte en officiell sida från Anthropic. Sidan är byggd med hjälp av Claude Code.
+  </footer>
+</body>
+</html>
