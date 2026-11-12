@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work with Amanda Backholm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1c3242;
+    --sand: #d9b896;
+    --gold: #cd8a3e;
+    --paper: #faf9f7;
+    --ink: #1c2328;
+    --muted: #5d676d;
+    --line: #e4dfd6;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #e9e6e0;
+    color: var(--ink);
+    font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 8mm;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+  .serif { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; }
+
+  /* Sida 1 */
+  .hero {
+    background: var(--navy);
+    color: var(--sand);
+    padding: 22mm 18mm 16mm;
+  }
+  .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: 8pt; font-weight: 500; margin: 0 0 6mm; opacity: .85; }
+  h1 { font-weight: 300; font-size: 30pt; line-height: 1.1; margin: 0 0 4mm; color: #f1e3d2; }
+  .role { font-size: 12pt; margin: 0 0 9mm; }
+  .quote { border-left: 2px solid var(--gold); padding-left: 5mm; font-size: 12.5pt; font-style: italic; line-height: 1.45; margin: 0; }
+  .body { padding: 12mm 18mm 0; }
+  h2 { font-size: 8.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0 0 4mm; }
+  .lead { font-size: 11.5pt; margin: 0 0 9mm; }
+  .themes { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 7mm; margin-bottom: 4mm; }
+  .theme { border-top: 1px solid var(--line); padding-top: 2.5mm; }
+  .theme b { display: block; font-weight: 500; color: var(--navy); font-size: 10.5pt; }
+  .theme span { color: var(--muted); font-size: 9pt; }
+  .formats { margin-top: 7mm; background: #f1ece3; padding: 5mm 6mm; font-size: 9.5pt; }
+  .formats b { color: var(--navy); }
+  .footer { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display: flex; justify-content: space-between; align-items: baseline; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 3mm; }
+  .logo { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; letter-spacing: .06em; font-size: 12pt; color: var(--navy); }
+  .logo sup { font-size: 7pt; vertical-align: .5em; }
+
+  /* Sida 2 */
+  .top2 { padding: 16mm 18mm 0; }
+  .about { display: grid; grid-template-columns: 1fr; gap: 3mm; margin-bottom: 9mm; }
+  .facts { list-style: none; padding: 0; margin: 4mm 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 7mm; }
+  .facts li { padding-left: 4.5mm; position: relative; font-size: 9.5pt; }
+  .facts li::before { content: ""; position: absolute; left: 0; top: 2.2mm; width: 2mm; height: 2mm; background: var(--gold); transform: rotate(45deg); }
+  .refs { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 7mm; margin-bottom: 9mm; }
+  .ref { border-top: 1px solid var(--line); padding-top: 2.5mm; }
+  .ref b { display: block; color: var(--navy); font-weight: 500; }
+  .ref span { color: var(--muted); font-size: 9pt; }
+  .contact { background: var(--navy); color: var(--sand); padding: 10mm 18mm 20mm; position: absolute; left: 0; right: 0; bottom: 0; }
+  .contact h2 { color: var(--gold); }
+  .contact .big { font-size: 15pt; color: #f1e3d2; font-weight: 300; margin: 0 0 5mm; }
+  .contact .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 7mm; font-size: 9.5pt; }
+  .contact a { color: var(--sand); text-decoration: none; }
+  .contact .logo { color: var(--sand); position: absolute; right: 18mm; bottom: 9mm; }
+  .tiny { font-size: 8pt; color: var(--muted); margin-top: 3mm; }
+
+  @media print {
+    body { background: none; }
+    .page { margin: 0; }
+  }
+
+  @media screen and (max-width: 820px) {
+    .page { width: 100%; min-height: 0; padding-bottom: 12mm; }
+    .themes, .refs, .facts, .contact .grid { grid-template-columns: 1fr; }
+    .footer { position: static; margin: 8mm 18mm 0; }
+    .contact { position: static; margin-top: 10mm; }
+    .contact .logo { position: static; display: block; margin-top: 6mm; }
+    h1 { font-size: 24pt; }
+  }
+  .dl { text-align: center; margin: 6mm 0 10mm; font-size: 10pt; }
+  .dl a { color: var(--navy); }
+  @media print { .dl { display: none; } }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="hero">
+    <p class="eyebrow">Keynotes · Workshops · Learning journeys</p>
+    <h1 class="serif">Amanda Backholm</h1>
+    <p class="role">Keynote speaker and certified coach, NeuroLeadership Institute</p>
+    <p class="quote serif">"People will always remember how you made them feel."</p>
+  </div>
+
+  <div class="body">
+    <h2>What you get</h2>
+    <p class="lead">Talks that combine research with concrete tools, delivered with energy and humour. After the session, participants know both <i>why</i> and <i>how</i> to do things differently from tomorrow.</p>
+
+    <h2>Keynote themes</h2>
+    <div class="themes">
+      <div class="theme"><b>Balance and performance</b><span>How to work and live sustainably</span></div>
+      <div class="theme"><b>Feedback culture</b><span>Creating a culture where feedback is actually used</span></div>
+      <div class="theme"><b>Coaching leadership</b><span>Actionable steps to take right away</span></div>
+      <div class="theme"><b>Habits for peak performance and rest</b><span>Recovery as part of performance</span></div>
+      <div class="theme"><b>The neuroscience of success</b><span>What the brain needs to learn and perform</span></div>
+      <div class="theme"><b>Innovation</b><span>Giving new ideas room to grow</span></div>
+      <div class="theme"><b>Emotional intelligence and growth mindset</b><span>Leading yourself and others</span></div>
+      <div class="theme"><b>Mindfulness and yoga</b><span>How they boost productivity and balance</span></div>
+      <div class="theme"><b>Change management</b><span>Supporting people through transformation</span></div>
+      <div class="theme"><b>Career coaching</b><span>Taking ownership of your next step</span></div>
+      <div class="theme"><b>Failure, grief and resilience</b><span>Daring to talk about the difficult topics</span></div>
+      <div class="theme"><b>Tailored to you</b><span>Themes linked to your strategy and situation</span></div>
+    </div>
+
+    <div class="formats">
+      <b>Format:</b> keynote, workshop or a learning journey over several steps. On site or online.
+      <b>Languages:</b> English, Swedish and Finnish.
+    </div>
+  </div>
+
+  <div class="footer"><span class="logo">BURN<sup>(B)</sup>RIGHT</span><span>1 / 2</span></div>
+</section>
+
+<section class="page">
+  <div class="top2">
+    <h2>About Amanda</h2>
+    <div class="about">
+      <p style="margin:0">I help leaders and organisations grow through modern learning journeys that link to strategy, self-leadership skills and coaching. I am a sociologist and a certified coach with 15+ years of experience across international organisations and the private sector. Today I work as a Senior HR Specialist in the Talent team at Orion Pharma, where I lead global leadership programmes, and as a keynote speaker through MySpeaker Finland.</p>
+      <ul class="facts">
+        <li>Over 900 professionals coached globally</li>
+        <li>Founder of Burn Bright Coaching Ab</li>
+        <li>Master's degree in Sociology</li>
+        <li>Experience from startups, healthcare, pharma and the UN</li>
+      </ul>
+    </div>
+
+    <h2>References</h2>
+    <div class="refs">
+      <div class="ref"><b>BeeHealthy</b><span>Head of Coaching: award-winning care path for type 2 diabetes</span></div>
+      <div class="ref"><b>Mehiläinen</b><span>Coaching methodology for digital care plans</span></div>
+      <div class="ref"><b>Huhtamaki</b><span>&nbsp;</span></div>
+      <div class="ref"><b>Ekonomit</b><span>&nbsp;</span></div>
+    </div>
+    <p class="tiny">More references available on request.</p>
+  </div>
+
+  <div class="contact">
+    <h2>Contact and booking</h2>
+    <p class="big serif">Tell me about your group, and I will suggest a format.</p>
+    <div class="grid">
+      <div>Email<br><a href="mailto:amanda.m.backholm@gmail.com">amanda.m.backholm@gmail.com</a></div>
+      <div>Phone<br>+358 50 371 2587</div>
+      <div>Web<br><a href="https://www.amandabackholm.com">www.amandabackholm.com</a></div>
+      <div>Book via MySpeaker<br><a href="https://myspeaker.fi/en/speakers/amanda-backholm/">myspeaker.fi/en/speakers/amanda-backholm</a></div>
+    </div>
+    <span class="logo">BURN<sup>(B)</sup>RIGHT</span>
+  </div>
+</section>
+
+<p class="dl"><a href="work-with-amanda-backholm.pdf">Download as PDF</a></p>
+</body>
+</html>
